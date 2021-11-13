@@ -2,6 +2,7 @@ package com.sda.practice.springbootpractice.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,5 +27,6 @@ public class Teacher{
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate joinDate;
 }

@@ -17,14 +17,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Teacher</a>
                         <a class="nav-link" href="/teacher/">Teacher</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="#">Student</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Student</a>
                     </li>
                 </ul>
             </div>
@@ -33,9 +32,9 @@
     <br><br>
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
-            <h4 class="display-5 fw-bold">Teachers list</h4>
+            <h4 class="display-5 fw-bold">Students list</h4>
             <div class="container-fluid" th:switch="${students.size() > 0}">
-                <h3 th:case="false">No teachers available!</h3>
+                <h3 th:case="false">No students available!</h3>
                 <table th:case="true" class="table">
                     <thead>
                     <tr>
@@ -50,12 +49,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="teacher : ${students}">
+                    <tr th:each="student : ${students}">
                         <th scope="row" th:text="${student.id}"></th>
                         <td th:text="${student.firstName}"></td>
                         <td th:text="${student.lastName}"></td>
                         <td th:text="${student.school}"></td>
-                        <td th:text="${student.specialization}"></td>
+                        <td th:text="${student.course}"></td>
                         <td th:text="${student.city.name}"></td>
                         <td th:text="${student.joinDate}"></td>
                     </tr>

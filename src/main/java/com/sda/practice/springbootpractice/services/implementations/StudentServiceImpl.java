@@ -26,5 +26,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createStudent(Student student) {
+        studentRepository.save(student);
     }
 }
