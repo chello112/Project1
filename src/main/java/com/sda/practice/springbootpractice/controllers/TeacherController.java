@@ -7,7 +7,6 @@ import com.sda.practice.springbootpractice.models.Teacher;
 import com.sda.practice.springbootpractice.services.CityService;
 import com.sda.practice.springbootpractice.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/teacher")
 public class TeacherController {
     @Autowired
@@ -38,26 +37,11 @@ public class TeacherController {
         List<City> cities = cityService.findAllCities();
         model.addAttribute("cities", cities);
         model.addAttribute("schools", School.values());
-        model.addAttribute("speciliazations", Specialization.values());
+        model.addAttribute("specializations", Specialization.values());
         return "teacher/add-teacher";
     }
 
-    @PostMapping("/add")
-    public String addTeacher(Teacher teacher, RedirectAttributes redirectAttributes) {
-        try {
-            teacherService.createTeacher(teacher);
-            redirectAttributes.addFlashAttribute("messageType", "success");
-            redirectAttributes.addFlashAttribute("message", "The teacher has been created successfully!");
-            return "redirect:/teacher";
-        }
-        catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
-            redirectAttributes.addFlashAttribute("teacher", teacher);
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            redirectAttributes.addFlashAttribute("message", "Error in adding the teacher!");
-            return "redirect:/teacher/add";
-        }
-    }
+
 
     @GetMapping("/update/{id}")
     public String updateTeacherForm(@PathVariable("id") Long id, @RequestParam(value = "teacher", required = false) Teacher teacher,
